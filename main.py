@@ -1,23 +1,14 @@
 from fastapi import FastAPI, Depends
-from fastapi.security import OAuth2PasswordBearer
-from pydantic import BaseModel
+from auth import verify_token
+from chat import chat
+from profile import get_profile
+from settings import get_settings
 
 app = FastAPI()
 
-# Simple token authentication without proper validation
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-class Message(BaseModel):
-    content: str
-
-# Vulnerable endpoint - No proper authentication or role checking
-@app.post("/chat")
-async def chat(message: Message, token: str = Depends(oauth2_scheme)):
-    """
-    Vulnerable endpoint that only checks if a token exists,
-    without validating the token or checking user roles
-    """
-    return {"response": f"Processed message: {message.content}"}
+app.include_router(chat)
+app.include_router(get_profile)
+app.include_router(get_settings)
 
 if __name__ == "__main__":
     import uvicorn
