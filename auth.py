@@ -19,7 +19,7 @@ def verify_token(token: str = Depends(oauth2_scheme)) -> Optional[str]:
                 detail="Invalid token",
                 headers={"WWW-Authenticate": "Bearer"},
             )
-        return username, healthCheck1
+        return username, healthcheck
     except JWTError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
