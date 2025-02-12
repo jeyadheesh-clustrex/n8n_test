@@ -4,13 +4,12 @@ from jose import JWTError, jwt
 from typing import Optional
 
 # Secret key and algorithm for token validation
-SECRET_KEY = "your_secret_key"
+SECRET_KEY = "asdfafdadf"
 ALGORITHM = "HS256"
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 def verify_token(token: str = Depends(oauth2_scheme)) -> Optional[str]:
-    """Decodes and verifies JWT token."""
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
