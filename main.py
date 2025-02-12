@@ -7,6 +7,7 @@ from settings import get_settings
 app = FastAPI()
 
 username = "john_doe"
+threshold = 2
 
 app.include_router(chat)
 app.include_router(get_profile)
