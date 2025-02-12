@@ -19,6 +19,7 @@ def verify_token(token: str = Depends(oauth2_scheme)) -> Optional[str]:
                 detail="Invalid token",
                 headers={"WWW-Authenticate": "Bearer"},
             )
+            print(userName)
         return username
     except JWTError:
         raise HTTPException(
