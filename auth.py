@@ -2,7 +2,7 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from typing import Optional
-
+healthCheck = True
 # Secret key and algorithm for token validation
 SECRET_KEY = "asdfafdadf"
 ALGORITHM = "HS256"
@@ -19,7 +19,6 @@ def verify_token(token: str = Depends(oauth2_scheme)) -> Optional[str]:
                 detail="Invalid token",
                 headers={"WWW-Authenticate": "Bearer"},
             )
-            print(userName)
         return username
     except JWTError:
         raise HTTPException(
