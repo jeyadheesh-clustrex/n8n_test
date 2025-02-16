@@ -7,6 +7,7 @@ healthCheck = True
 SECRET_KEY = "asdfafdadf"
 ALGORITHM = "HS256"
 
+
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 def verify_token(token: str = Depends(oauth2_scheme)) -> Optional[str]:

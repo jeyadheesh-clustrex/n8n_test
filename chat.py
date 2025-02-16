@@ -4,6 +4,7 @@ from auth import verify_token
 
 chat = APIRouter()
 
+api_secret_key = 'sfafddsf'
 class Message(BaseModel):
     content: str
 
