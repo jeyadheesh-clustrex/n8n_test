@@ -4,8 +4,11 @@ from auth import verify_token
 
 chat = APIRouter()
 
+api_secret_key = 'sfafddsf'
 class Message(BaseModel):
     content: str
+
+# yes bro
 
 @chat.post("/chat")
 async def chat_endpoint(message: Message, token: str):

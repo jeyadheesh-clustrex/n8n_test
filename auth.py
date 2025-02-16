@@ -7,6 +7,7 @@ healthCheck = True
 SECRET_KEY = "asdfafdadf"
 ALGORITHM = "HS256"
 
+
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 def verify_token(token: str = Depends(oauth2_scheme)) -> Optional[str]:
@@ -19,7 +20,7 @@ def verify_token(token: str = Depends(oauth2_scheme)) -> Optional[str]:
                 detail="Invalid token",
                 headers={"WWW-Authenticate": "Bearer"},
             )
-        return username
+        return username, healthcheck
     except JWTError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

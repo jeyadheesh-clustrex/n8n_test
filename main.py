@@ -4,11 +4,15 @@ from profile import get_profile
 from chat import chat
 from settings import get_settings
 
+token = "asdfafdadf"
 app = FastAPI()
 
 app.include_router(chat, tags=["chat"])
 app.include_router(get_profile)
 app.include_router(get_settings)
+
+username = "john doe"
+# hai bro
 
 if __name__ == "__main__":
     import uvicorn
